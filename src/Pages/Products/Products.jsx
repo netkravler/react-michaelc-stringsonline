@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import appService from "../../Components/App/Appservices/App.service";
-import { ProductDetails } from './ProductBlocks'
+import { ProductCard, ProductDetails } from './ProductBlocks'
 import {  useParams } from "react-router-dom";
 
 export const ProductList = () => {
@@ -30,7 +30,7 @@ export const ProductList = () => {
         return (
           <li key={j}>
             <h5>
-              <ProductDetails id={product.id} />
+              <ProductCard id={product.id} /> 
             </h5>
           </li>
         );

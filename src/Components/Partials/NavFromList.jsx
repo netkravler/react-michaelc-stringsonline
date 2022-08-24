@@ -41,15 +41,13 @@ export const GroupList = ({ GroupItems }) => {
     <ul>
       {GroupItems.map((sub, j) => {
         return (
-          sub.products.length && ( /* only show link if products array is not empty */
-          <li key={j}>
-            <h4>
-              {console.log("sub", sub)}
-              <Link to={`products/${sub.id}`}>{sub.title}</Link>
-            </h4>
-
-           
-          </li>)
+          sub.products.length /* only show link if products array is not empty */ && (
+            <li key={j}>
+              <h4>
+                <Link to={`productgroup/${sub.id}`}>{sub.title}</Link>
+              </h4>
+            </li>
+          )
         );
       })}
     </ul>

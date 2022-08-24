@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import appService from "../../Components/App/Appservices/App.service";
 
 import styled from "styled-components";
+import { Link, useParams } from "react-router-dom";
 
 const StyledProduct = styled.figure`
   border: solid 1px #333;
@@ -46,16 +47,18 @@ export const ProductByID = ({ id }) => {
   return products ? products.item : null;
 };
 
-export const ProductDetails = (id) => {
-  const item = ProductByID(id);
+export const ProductDetails = () => {
+  const { id } = useParams();
+  const item = ProductByID({ id });
 
   return (
     <StyledDetails>
       {item ? (
-        <><section>
-          <img src={item.image.fullpath} alt={item.name} />
-          {console.log(item)}
-          
+        <>
+          <section>
+            <img src={item.image.fullpath} alt={item.name} />
+            {console.log(item)}
+
             <header>
               <h2>{item.name}</h2>
             </header>
@@ -66,5 +69,37 @@ export const ProductDetails = (id) => {
         <>...Loading</>
       )}
     </StyledDetails>
+  );
+};
+
+const StyledCard = styled(StyledProduct)`
+  img {
+    flex: 1;
+  }
+  section {
+    flex: 1.5;
+  }
+`;
+
+export const ProductCard = (id) => {
+  const item = ProductByID(id);
+
+  console.log(item);
+  return (
+    <StyledCard>
+      {item && (
+        <Link to={`/product/${item.id}`}>
+          <section>
+            <img src={item.image.fullpath} alt={item.name} />
+            {console.log("item ", item)}
+
+            <header>
+              <h2>{item.name}</h2>
+            </header>
+            <pre>{item.description_short}</pre>
+          </section>
+        </Link>
+      )}
+    </StyledCard>
   );
 };

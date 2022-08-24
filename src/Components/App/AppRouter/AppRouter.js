@@ -9,6 +9,7 @@ import { Main } from "../../Partials/Main";
 import { ProductNav } from "../../Partials/NavFromList";
 
 import styled from "styled-components";
+import { ProductDetails } from "../../../Pages/Products/ProductBlocks";
 
 const StyledMain = styled.main`
   display: flex;
@@ -24,7 +25,8 @@ export const AppRouter = () => {
           <ProductNav />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products/:id" element={<ProductList />} />
+            <Route path="/productgroup/:id" element={<ProductList />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
         </StyledMain>
